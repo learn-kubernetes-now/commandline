@@ -42,6 +42,25 @@ sudo dnf config-manager \
 sudo dnf makecache  ;
 
 
+cat <<EOF> ~/hosts
+[masters]
+master1 ansible_host=192.168.120.236 ansible_user=devops
 
+[workers]
+worker1 ansible_host=192.168.120.237 ansible_user=devops
+worker2 ansible_host=192.168.120.238 ansible_user=devops
+
+[operation]
+operation-node ansible_host=192.168.120.235 ansible_user=devops
+EOF
+
+sudo cat <<EOF> /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+192.168.120.235 operation-node.kast.wip operation-node
+192.168.120.236 master1.kast.wip master1
+192.168.120.237 worker1.kast.wip worker1
+192.168.120.238 worker2.kast.wip worker2
+EOF
 
 
