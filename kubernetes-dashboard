@@ -51,5 +51,25 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6ImJuM1BxUjByend2Y0JQNS1fdFoyel9aOXJVZERScW5BbklXckdS
 kubectl get secret $(kubectl get serviceaccount dashboard-user -o jsonpath="{.secrets[0].name}") -o jsonpath="{.data.token}" | base64 --decode
 
 
+Allow access with read-only user
+Note that the steps above grant admin privileges to the dashboard-user account. If you want to allow access with a read-only user instead, you will need to create a read-only role, and rolebinding to apply to the serviceaccount.
+
+First, create the read-only role yaml file and apply it to the cluster:
+
+dashboard-read-only-role.yaml
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: kubernetes-dashboard
+  name: dashboard-read-only-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets", "deployments", "replicasets", "pods/log"]
+  verbs: ["get", "list", "watch"]
+
+
+kubectl apply -f dashboard-read-only-role.yaml
+
 
 
