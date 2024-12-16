@@ -1,1 +1,162 @@
 
+kubeadm config images pull
+
+[config/images] Pulled registry.k8s.io/kube-apiserver:v1.29.8
+[config/images] Pulled registry.k8s.io/kube-controller-manager:v1.29.8
+[config/images] Pulled registry.k8s.io/kube-scheduler:v1.29.8
+[config/images] Pulled registry.k8s.io/kube-proxy:v1.29.8
+[config/images] Pulled registry.k8s.io/coredns/coredns:v1.11.1
+[config/images] Pulled registry.k8s.io/pause:3.9
+[config/images] Pulled registry.k8s.io/etcd:3.5.10-0
+
+ctr images pull registry.k8s.io/kube-apiserver:v1.29.8 ;
+ctr images pull registry.k8s.io/kube-controller-manager:v1.29.8 ;
+ctr images pull registry.k8s.io/kube-scheduler:v1.29.8 ;
+ctr images pull registry.k8s.io/kube-proxy:v1.29.8 ;
+ctr images pull registry.k8s.io/coredns/coredns:v1.11.1 ;
+ctr images pull registry.k8s.io/pause:3.9 ;
+ctr images pull registry.k8s.io/etcd:3.5.10-0 ; 
+
+
+ctr images pull docker.io/longhornio/csi-provisioner:v4.0.1 ;
+ctr images pull docker.io/longhornio/longhorn-instance-manager:v1.7.1 ;
+ctr images pull docker.io/longhornio/
+
+docker tag longhornio/csi-attacher:v4.6.1 localhost:5000/csi-attacher:v4.6.1 
+
+docker push localhost:5000/csi-attacher:v4.6.1
+
+docker pull longhornio/csi-attacher:v4.6.1  ;
+docker pull longhornio/csi-provisioner:v4.0.1 ;
+docker pull longhornio/csi-resizer:v1.11.1 ;
+docker pull longhornio/csi-snapshotter:v7.0.2 ;
+docker pull longhornio/csi-node-driver-registrar:v2.12.0 ;
+docker pull longhornio/livenessprobe:v2.14.0 ;
+docker pull longhornio/openshift-origin-oauth-proxy:4.15 ;
+docker pull longhornio/backing-image-manager:v1.7.1 ;
+docker pull longhornio/longhorn-engine:v1.7.1 ;
+docker pull longhornio/longhorn-instance-manager:v1.7.1 ;
+docker pull longhornio/longhorn-manager:v1.7.1 ;
+docker pull longhornio/longhorn-share-manager:v1.7.1 ;
+docker pull longhornio/longhorn-ui:v1.7.1 ;
+docker pull longhornio/longhorn-cli:v1.7.1 ;
+docker pull longhornio/support-bundle-kit:v0.0.42 ;
+
+docker save -o csi-attacher.tar longhornio/csi-attacher:v4.6.1  ;
+docker save -o csi-provisioner.tar longhornio/csi-provisioner:v4.0.1 ;
+docker save -o csi-resizer.tar longhornio/csi-resizer:v1.11.1 ;
+docker save -o csi-snapshotter.tar longhornio/csi-snapshotter:v7.0.2 ;
+docker save -o csi-node-driver-registrar.tar longhornio/csi-node-driver-registrar:v2.12.0 ;
+docker save -o livenessprobe.tar longhornio/livenessprobe:v2.14.0 ;
+docker save -o openshift-origin-oauth-proxy.tar longhornio/openshift-origin-oauth-proxy:4.15 ;
+docker save -o backing-image-manager.tar longhornio/backing-image-manager:v1.7.1 ;
+docker save -o longhorn-engine.tar longhornio/longhorn-engine:v1.7.1 ;
+docker save -o longhorn-instance-manager.tar longhornio/longhorn-instance-manager:v1.7.1 ;
+docker save -o longhorn-manager.tar longhornio/longhorn-manager:v1.7.1 ;
+docker save -o longhorn-share-manager.tar longhornio/longhorn-share-manager:v1.7.1 ;
+docker save -o longhorn-ui.tar longhornio/longhorn-ui:v1.7.1 ;
+docker save -o longhorn-cli.tar longhornio/longhorn-cli:v1.7.1 ;
+docker save -o support-bundle-kit.tar longhornio/support-bundle-kit:v0.0.42 ;
+
+
+ctr images ls
+
+ctr images export kube-apiserver-v1.29.8.tar registry.k8s.io/kube-apiserver:v1.29.8
+ctr images export kube-controller-manager.tar registry.k8s.io/kube-controller-manager:v1.29.8 ;
+ctr images export kube-scheduler.tar registry.k8s.io/kube-scheduler:v1.29.8 ;
+ctr images export kube-proxy.tar registry.k8s.io/kube-proxy:v1.29.8 ;
+ctr images export coredns.tar registry.k8s.io/coredns/coredns:v1.11.1 ;
+ctr images export pause.tar registry.k8s.io/pause:3.9 ;
+ctr images export etcd.tar registry.k8s.io/etcd:3.5.10-0 ; 
+
+ctr images import kube-apiserver-v1.29.8.tar ;
+ctr images import kube-controller-manager.tar  ;
+ctr images import kube-scheduler.tar ;
+ctr images import kube-proxy.tar ;
+ctr images import coredns.tar ;
+ctr images import pause.tar ;
+ctr images import etcd.tar ;
+
+ctr images import backing-image-manager.tar ;
+ctr images import csi-attacher.tar ;
+ctr images import csi-node-driver-registrar.tar ;
+ctr images import csi-provisioner.tar ;
+ctr images import csi-resizer.tar ;
+ctr images import csi-snapshotter.tar ;
+ctr images import livenessprobe.tar ;
+ctr images import longhorn-cli.tar ;
+ctr images import longhorn-engine.tar ;
+ctr images import longhorn-instance-manager.tar ;
+ctr images import longhorn-manager.tar ;
+ctr images import longhorn-share-manager.tar ;
+ctr images import longhorn-ui.tar ;
+ctr images import openshift-origin-oauth-proxy.tar ;
+ctr images import support-bundle-kit.tar ;
+
+
+
+
+ctr images import  calico-cni.tar  ;
+ctr images import  calico-node.tar  ;
+ctr images import  calico-kube-controllers.tar ;
+
+
+sudo apt-mark unhold kubelet kubeadm kubectl ;
+apt-get remove -y kubelet=1.29.0-1.1 kubeadm=1.29.0-1.1 kubectl=1.29.0-1.1 ;
+
+systemctl stop kubelet ;
+rm -f  /etc/kubernetes/kubelet.conf ;
+rm -f  /etc/kubernetes/pki/ca.crt  ;
+rm -f /var/lib/kubelet/pki/kubelet-client-current.pem ;
+rm -f /var/lib/kubelet/pki/kubelet-client-2024-09-08-19-16-23.pem ;
+rm -f /var/run/containerd/containerd.sock ;
+
+ls -l /var/run/containerd/containerd.sock ;
+sudo chmod 666 /var/run/containerd/containerd.sock ;
+ls -l /var/run/containerd/containerd.sock ;
+
+apt-get install -y kubelet=1.29.0-1.1 kubeadm=1.29.0-1.1 kubectl=1.29.0-1.1
+
+sudo apt-mark hold kubelet kubeadm kubectl ;
+
+sudo systemctl status containerd ; 
+sudo systemctl restart containerd ;
+systemctl enable kubelet ;
+
+kubeadm join 172.16.0.100:6443 --token vrmidu.c1f60hfrvyup7gc2 --discovery-token-ca-cert-hash sha256:c8fa86d45fd495cbde4e9495023bfe7687938aa0be64cc26685b5b2720c1be00
+
+NODENAME=$(hostname -s) ;
+kubectl label node $(hostname -s) node-role.kubernetes.io/worker=worker-new ;
+
+sudo systemctl restart systemd-resolved
+sudo swapoff -a && sudo systemctl daemon-reload && sudo systemctl restart kubelet
+
+
+systemctl start kubelet ;
+
+
+
+journalctl -u kubelet ;
+journalctl -u containerd ;
+
+
+kubectl get namespace "longhorn-system" -o json \
+  | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/" \
+  | kubectl replace --raw /api/v1/namespaces/stucked-namespace/finalize -f -
+
+kubectl get namespace longhorn-system -o json   | tr -d "\n" | sed "s/\"finalizers\": \[[^]]\+\]/\"finalizers\": []/"   | kubectl replace --raw /api/v1/namespaces/longhorn-system/finalize -f -
+
+
+kubectl get crds | grep longhorn
+kubectl delete crd engineimages.longhorn.io
+kubectl delete crd volumes.longhorn.io
+kubectl delete crd replicas.longhorn.io
+kubectl delete crd settings.longhorn.io
+kubectl delete crd nodes.longhorn.io
+kubectl delete crd backingimages.longhorn.io
+kubectl delete crd engines.longhorn.io
+kubectl delete crd migrations.longhorn.io
+
+
+helm install longhorn ./chart --namespace longhorn-system --create-namespace
+
